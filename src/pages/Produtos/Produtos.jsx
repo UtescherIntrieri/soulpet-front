@@ -13,6 +13,11 @@ export function Produtos() {
     const [show, setShow] = useState(false);
     const [idProduto, setIdProduto] = useState(null);
 
+    const handleClose = () => {
+        setIdProduto(null);
+        setShow(false)
+    };
+
 
     const handleShow = (id) => {
         setIdProduto(id);
@@ -33,6 +38,19 @@ export function Produtos() {
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    function onDelete() {
+        axios.delete(`http://localhost:3001/produtos/${idProduto}`)
+            .then(response => {
+                toast.success(response.data.message, { position: "bottom-right", duration: 2000 });
+                initializeTable();
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error(error.response.data.message, { position: "bottom-right", duration: 2000 });
+            });
+        handleClose();
     }
 
     return (
@@ -117,6 +135,20 @@ export function Produtos() {
                         </tbody>
                     </Table>
             }
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmação</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Tem certeza que deseja excluir o produto?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={onDelete}>
+                        Excluir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             
         </div>
     );
