@@ -65,6 +65,7 @@ export function Pets() {
     <div className="pets container">
       <div className="d-flex justify-content-between align-items-center">
         <h1>Pets</h1>
+        <Button variant="success" as={Link} to="/pets/novo" >Adicionar Pet</Button>
       </div>
       {pets ? (
         <Table striped bordered hover>
