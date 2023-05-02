@@ -33,6 +33,7 @@ export function Pets() {
     }
   };
 
+
   const onDelete = async () => {
     try {
       const response = await axios.delete(`http://localhost:3001/pets/${idPet}`);
