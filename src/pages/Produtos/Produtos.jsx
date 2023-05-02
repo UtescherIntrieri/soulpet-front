@@ -121,13 +121,13 @@ export function Produtos() {
                                             <td>{produto.dataDesconto}</td>
                                             <td>{produto.categoria}</td>
                                             <td className="d-flex gap-2">
-                                                <Button onClick={() => handleShow(produto.id)}
+                                                <Button variant="danger" onClick={() => handleShow(produto.id)}
                                                 >
                                                     <i className="bi bi-trash-fill"></i>
                                                 </Button>
-                                                <Button>
-                                                    <i className="bi bi-pencil-fill"></i>
-                                                </Button>
+                                                <Button as={Link} to={`/produtos/editar/${produto.id}`}>
+                                                <i className="bi bi-pencil-fill"></i>
+                                            </Button>
                                             </td>
                                         </tr>
                                     )
