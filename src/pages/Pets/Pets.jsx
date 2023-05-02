@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import { toast } from "react-hot-toast";
 
 export function Pets() {
   const [pets, setPets] = useState(null);
@@ -30,6 +31,22 @@ export function Pets() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+
+  const onDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/pets/${idPet}`);
+      toast.success(response.data.message, { position: "bottom-right", duration: 2000 });
+      initializeTable();
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message ?? "Erro ao excluir o pet", {
+        position: "bottom-right",
+        duration: 2000,
+      });
+    }
+    handleClose();
   };
 
     const [showModal, setShowModal] = useState(false);
@@ -110,6 +127,20 @@ export function Pets() {
       ) : (
         <Loader />
       )}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmação</Modal.Title>
+          </Modal.Header>
+                <Modal.Body>Tem certeza que deseja excluir o pet?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={onDelete} >
+                        Excluir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
     </div>
   );
 }
