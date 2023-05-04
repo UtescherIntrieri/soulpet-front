@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# SoulPet API (Front-End)
+Bem-vindo(a), aqui você irá aprender como a API funciona e como utilizá-la. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Back-End -> [README.md]
 
-## Available Scripts
+>[MIT License  
+Copyright (c) 2023 SoulPet]
 
-In the project directory, you can run:
+#
 
-### `npm start`
+## Index
+- [Para que serve a API](#para-que-serve-a-api)
+- [O que conseguirei dessa API](#o-que-conseguirei-dessa-api)
+- [Instalação](#instalação)
+  - [Dependências necessárias](#dependências-necessárias)
+  - [Ferramentas necessárias](#ferramentas-necessárias-necessárias)
+- [Utilização](#utilização)
+  - [Inicialização](#inicialização)
+  - [Rotas Disponíveis](#rotas-disponíveis)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#
 
-### `npm test`
+## Para que serve a API? 
+&ensp;&ensp;A SoulPet API é uma aplicação para sistemas internos de petshops, que provê a integração de um banco de dados para cadastro e manipulação de clientes, pets, produtos, serviços e pedidos.  
+&ensp;&ensp;A clareza visual é um foco para essa API, onde os funcionários que estarão trabalhando com ela têm uma interface clara e amigável, facilitando o fluxo de trabalho. Além disso, todas os dados são validados de acordo com seu tipo e informação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#
+ ## O que conseguirei dessa API?
+### &ensp;&ensp;A API oferece diversos recursos e ferramentas, assim como:
+- A realização e manutenção do cadastro de clientes, com seu nome, e-mail e telefone, assim como a de seus respectivos pets, com nome, tipo, porte, e data de nascimento. 
+- Cadastrar produtos e checar sua disponibilidade em estoque. 
+- O agendamentos de serviços
+- Criação e organização de pedidos   
+- E muito mais.  
 
-### `npm run build`
+&ensp;&ensp;Com a utilização dessa API, os petshops mantem um banco de dados único que otimiza o trabalho e o fluxo de informações dentro da empresa, indiretamente diminuindo erros e tempo desperdiçado.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Instalação
+&ensp;&ensp;Realizar um `Git Clone` do repositório.  
+&ensp;&ensp;`npm install` para instalar todas as dependências necessárias.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependências Necessárias
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+>[axios] | [bootstrap] | [bootstrap-icons] | [react] | [react-bootstrap] | [react-dom] | [react-hook-form] | [react-hot-toast] | [react-router-dom] | [react-scripts] | [web-vitals]  
 
-### `npm run eject`
+## Ferramentas necessárias:
+>[MySQl]  
+[Git]  
+[Node js]  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Utilização
+&ensp;&ensp;Deve-se primeiro inicializar o repositório
+## Inicialização
+`npm start`  
+&ensp;&ensp; Abre em: http://localhost:3000
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Rotas disponíveis:
+- Home http://localhost:3000/  
+- Listar todos os clientes http://localhost:3000/clientes  
+  - Cadastrar um novo cliente http://localhost:3000/clientes/novo  
+  - Editar os dados de um cliente http://localhost:3000/clientes/editar/:id  
+- Listar todos os pets http://localhost:3000/pets  
+  - Cadastrar um novo pet http://localhost:3000/pets/novo  
+  - Editar os dados de um pet http://localhost:3000/pets/editar/:id  
+- Listar todos os produtos http://localhost:3000/produtos  
+  - Cadastrar um novo produto http://localhost:3000/produtos/novo  
+  - Editar dados de um produto http://localhost:3000/produtos/editar/:id  
+- Listar todos os agendamentos http://localhost:3000/agendamentos  
+  - Cadastrar um agendamento novo http://localhost:3000/agendamentos/novo  
+- Listar todos os serviços http://localhost:3000/servicos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*Obs: :id = id do objeto no mySQL*  
+&ensp;&ensp;*Para editar o pet de id 1 -> localhost:3000/pets/editar/1*  
+&ensp;&ensp;*Para verificar os padrões de validação verifique o [README.md] do back-end*
 
-## Learn More
+#
+## Devs:
+>## - [Nai Utescher]
+>## - [Juliana Andrade]
+>## - [Gabriel Camilo]
+>## - [Yuri Schuery]
+>## - [Daniela Guilhoto]
+#
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT License  
+Copyright (c) 2023 SoulPet]: LICENSE.md
+[README.md]: ../soulpet-back/README.md
+[axios]: https://axios-http.com
+[bootstrap]: https://getbootstrap.com
+[bootstrap-icons]: https://icons.getbootstrap.com
+[react]: https://react.dev
+[react-bootstrap]: https://react-bootstrap.github.io
+[react-dom]: https://www.npmjs.com/package/react-dom
+[react-hook-form]: https://react-hook-form.com
+[react-hot-toast]: https://react-hot-toast.com
+[react-router-dom]: https://www.npmjs.com/package/react-router-dom
+[react-scripts]: https://www.npmjs.com/package/react-scripts
+[web-vitals]: https://www.npmjs.com/package/web-vitals
+[MySQl]: https://dev.mysql.com/downloads/installer/
+[Git]: https://git-scm.com/downloads
+[Node js]: https://nodejs.org/en/download
+[Nai Utescher]: https://github.com/UtescherIntrieri
+[Juliana Andrade]: https://github.com/andradeju
+[Gabriel Camilo]: https://github.com/gabrielcamilo21
+[Yuri Schuery]: https://github.com/souzaschuery
+[Daniela Guilhoto]: https://github.com/DGuilhoto
