@@ -120,8 +120,8 @@ export function Produtos() {
                                             <td>{produto.nome}</td>
                                             <td>{produto.preco}</td>
                                             <td>{produto.descricao}</td>
-                                            <td>{produto.desconto}</td>
-                                            <td>{produto.dataDesconto}</td>
+                                            <td>{produto.desconto}%</td>
+                                            <td>{produto.dataDesconto.split("-").reverse().join("/")}</td>
                                             <td>{produto.categoria}</td>
                                             <td className="d-flex  gap-2 justify-content-center">
                                             <Button variant="success" as={Link} to={`/produtos/editar/${produto.id}`}>

@@ -95,16 +95,16 @@ export function Pets() {
         <Table id="estilizacao" striped bordered hover>
           <thead >
             <tr >
+              <th>Nome do Pet</th>
               <th>Nome do Tutor</th>
-              <th>Nome</th>
               <th className="w-25" >Ações</th>
             </tr>
           </thead>
           <tbody>
             {pets.map(({ id, nome, tipo, porte, dataNasc, clienteNome }) => (
               <tr key={id}>
-                <td>{clienteNome}</td>
                 <td>{nome}</td>
+                <td>{clienteNome}</td>
                 <td className="d-flex  gap-2 justify-content-center">
                   <Button
                     onClick={() =>
