@@ -51,7 +51,7 @@ export function Clientes() {
         <div className="clientes container">
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Clientes</h1>
-                <Button as={Link} to="/clientes/novo">
+                <Button variant="success" as={Link} to="/clientes/novo">
                     <i className="bi bi-plus-lg me-2"></i> Cliente
                 </Button>
             </div>
@@ -75,13 +75,14 @@ export function Clientes() {
                                         <td>{cliente.nome}</td>
                                         <td>{cliente.email}</td>
                                         <td>{cliente.telefone}</td>
-                                        <td className="d-flex gap-2">
-                                            <Button onClick={() => handleShow(cliente.id)}>
-                                                <i className="bi bi-trash-fill"></i>
-                                            </Button>
-                                            <Button as={Link} to={`/clientes/editar/${cliente.id}`}>
+                                        <td className="d-flex  gap-2 justify-content-center">
+                                        <Button variant="success" as={Link} to={`/clientes/editar/${cliente.id}`}>
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
+                                            <Button variant="danger" onClick={() => handleShow(cliente.id)}>
+                                                <i className="bi bi-trash-fill"></i>
+                                            </Button>
+                                            
                                         </td>
                                     </tr>
                                 )
@@ -98,7 +99,7 @@ export function Clientes() {
                     <Button variant="danger" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={onDelete}>
+                    <Button variant="success" onClick={onDelete}>
                         Excluir
                     </Button>
                 </Modal.Footer>

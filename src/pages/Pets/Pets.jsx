@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
 
+
 export function Pets() {
   const [pets, setPets] = useState(null);
   const [show, setShow] = useState(false);
   const [idPet, setIdPet] = useState(null);
+  const [clientes, setClientes] = useState(null);
 
   const handleClose = () => {
     setIdPet(null);
@@ -26,18 +28,35 @@ export function Pets() {
 
   const initializeTable = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/pets");
-      setPets(response.data ?? []);
+      const [petsResponse, clientesResponse] = await Promise.all([
+        axios.get("http://localhost:3001/pets"),
+        axios.get("http://localhost:3001/clientes"),
+      ]);
+
+      const petsData = petsResponse.data ?? [];
+      const clientesData = clientesResponse.data ?? [];
+      const petsWithClientName = petsData.map((pet) => {
+        const cliente = clientesData.find((cliente) => cliente.id === pet.clienteId);
+        return {...pet, clienteNome: cliente ? cliente.nome : '',};
+        
+      });
+
+      setPets(petsWithClientName);
+      setClientes(clientesData);
     } catch (error) {
       console.log(error);
     }
   };
 
-
   const onDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3001/pets/${idPet}`);
-      toast.success(response.data.message, { position: "bottom-right", duration: 2000 });
+      const response = await axios.delete(
+        `http://localhost:3001/pets/${idPet}`
+      );
+      toast.success(response.data.message, {
+        position: "bottom-right",
+        duration: 2000,
+      });
       initializeTable();
     } catch (error) {
       console.log(error);
@@ -49,7 +68,7 @@ export function Pets() {
     handleClose();
   };
 
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [currentPet, setCurrentPet] = useState(null);
   const handleShowModal = (pet) => {
@@ -62,32 +81,31 @@ export function Pets() {
     setCurrentPet(null);
   };
 
+    
+
   return (
     <div className="pets container">
       <div className="d-flex justify-content-between align-items-center">
         <h1>Pets</h1>
-        <Button variant="success" as={Link} to="/pets/novo" >Adicionar Pet</Button>
+        <Button variant="success" as={Link} to="/pets/novo">
+          <i className="bi bi-plus-lg me-2"></i> Pet
+        </Button>
       </div>
       {pets ? (
-        <Table striped bordered hover>
+        <Table id="estilizacao" striped bordered hover>
           <thead >
-            <tr>
+            <tr >
+              <th>Nome do Tutor</th>
               <th>Nome</th>
-              <th>Ações</th>
+              <th className="w-25" >Ações</th>
             </tr>
           </thead>
           <tbody>
-            {pets.map(({ id, nome, tipo, porte, dataNasc }) => (
+            {pets.map(({ id, nome, tipo, porte, dataNasc, clienteNome }) => (
               <tr key={id}>
+                <td>{clienteNome}</td>
                 <td>{nome}</td>
-                <td className="d-flex gap-2">
-                  <Button onClick={() => handleShow(id)} variant="danger">
-                    <i className="bi bi-trash-fill"></i>
-                  </Button>
-                  <Button variant="success" as={Link} to={`/pets/editar/${id}`}>
-                    Editar
-                  </Button>
-
+                <td className="d-flex  gap-2 justify-content-center">
                   <Button
                     onClick={() =>
                       handleShowModal({ id, nome, tipo, porte, dataNasc })
@@ -95,6 +113,12 @@ export function Pets() {
                     variant="success"
                   >
                     <i class="bi bi-clipboard-heart"></i>
+                  </Button>
+                  <Button variant="success" as={Link} to={`/pets/editar/${id}`}>
+                    <i className="bi bi-pencil-fill"></i>
+                  </Button>
+                  <Button onClick={() => handleShow(id)} variant="danger">
+                    <i className="bi bi-trash-fill"></i>
                   </Button>
                 </td>
                 <Modal show={showModal} onHide={handleCloseModal}>
@@ -131,17 +155,17 @@ export function Pets() {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmação</Modal.Title>
-          </Modal.Header>
-                <Modal.Body>Tem certeza que deseja excluir o pet?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={onDelete} >
-                        Excluir
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+        </Modal.Header>
+        <Modal.Body>Tem certeza que deseja excluir o pet?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={onDelete}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

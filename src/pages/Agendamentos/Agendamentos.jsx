@@ -56,26 +56,14 @@ export function Agendamentos() {
     handleClose();
   }
 
-  const [showModal, setShowModal] = useState(false);
-
-  const [currentAgendamento, setCurrentAgendamento] = useState(null);
-  const handleShowModal = (agendamento) => {
-    setCurrentAgendamento(agendamento);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setCurrentAgendamento(null);
-  };
-
   return (
     <div className="agendamentos container">
       <div className="d-flex justify-content-between align-items-center">
         <h1>Agendamentos</h1>
         <Button variant="success" as={Link} to="/agendamentos/novo">
-          Adicionar Agendamento
+          <i className="bi bi-plus-lg me-2"></i> Agendamento
         </Button>
+        
       </div>
       {agendamentos === null ? (
         <Loader />
@@ -84,9 +72,9 @@ export function Agendamentos() {
           <thead>
             <tr>
               <th>Data Agendada</th>
-              <th>Pet Id</th>
-              <th>Serviço Id</th>
-              <th>Ações</th>
+              <th className="w-25">Pet Id</th>
+              <th className="w-25">Serviço Id</th>
+              <th className="w-25">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -99,55 +87,22 @@ export function Agendamentos() {
                   </td>
                   <td>{agendamento.petId}</td>
                   <td>{agendamento.servicoId}</td>
-                  <td className="d-flex gap-2">
+                  <td className="d-flex  gap-2 justify-content-center">
+                    <Button
+                      variant="success"
+                      as={Link}
+                      to={`/agendamentos/editar/${agendamento.id}`}
+                    >
+                      <i className="bi bi-pencil-fill"></i>
+                    </Button>
+                  
                     <Button
                       onClick={() => handleShow(agendamento.id)}
                       variant="danger"
                     >
                       <i className="bi bi-trash-fill"></i>
                     </Button>
-                    <Button
-                      variant="success"
-                      as={Link}
-                      to={`/agendamentos/editar/${agendamento.id}`}
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      onClick={() => handleShowModal(agendamento)}
-                      variant="success"
-                    >
-                      <i class="bi bi-clipboard-heart"></i>
-                    </Button>
                   </td>
-                  <Modal show={showModal} onHide={handleCloseModal}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Detalhes do Agendamento</Modal.Title>
-                    </Modal.Header>
-                    {currentAgendamento && (
-                      <Modal.Body className="Modal">
-                        <div>
-                          <strong>Agendamento:</strong>{" "}
-                          {currentAgendamento.dataAgendada
-                            .split("-")
-                            .reverse()
-                            .join("/")}
-                        </div>
-                        <div>
-                          <strong>Pet Id:</strong> {currentAgendamento.petId}
-                        </div>
-                        <div>
-                          <strong>Serviço Id:</strong>{" "}
-                          {currentAgendamento.servicoId}
-                        </div>
-                      </Modal.Body>
-                    )}
-                    <Modal.Footer>
-                      <Button variant="success" onClick={handleCloseModal}>
-                        Fechar
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
                 </tr>
               );
             })}
