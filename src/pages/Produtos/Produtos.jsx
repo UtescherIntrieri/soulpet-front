@@ -120,14 +120,15 @@ export function Produtos() {
                                             <td>{produto.desconto}</td>
                                             <td>{produto.dataDesconto}</td>
                                             <td>{produto.categoria}</td>
-                                            <td className="d-flex gap-2">
+                                            <td className="d-flex  gap-2 justify-content-center">
+                                            <Button variant="success" as={Link} to={`/produtos/editar/${produto.id}`}>
+                                                <i className="bi bi-pencil-fill"></i>
+                                            </Button>
                                                 <Button variant="danger" onClick={() => handleShow(produto.id)}
                                                 >
                                                     <i className="bi bi-trash-fill"></i>
                                                 </Button>
-                                                <Button as={Link} to={`/produtos/editar/${produto.id}`}>
-                                                <i className="bi bi-pencil-fill"></i>
-                                            </Button>
+                                             
                                             </td>
                                         </tr>
                                     )
@@ -144,7 +145,7 @@ export function Produtos() {
                     <Button variant="danger" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={onDelete}>
+                    <Button variant="success" onClick={onDelete}>
                         Excluir
                     </Button>
                 </Modal.Footer>
