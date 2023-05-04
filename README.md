@@ -17,6 +17,7 @@ Copyright (c) 2023 SoulPet]
 - [Utilização](#utilização)
   - [Inicialização](#inicialização)
   - [Rotas Disponíveis](#rotas-disponíveis)
+- [Devs](#devs)
 
 
 #
