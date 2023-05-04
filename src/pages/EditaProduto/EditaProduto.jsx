@@ -54,6 +54,12 @@ export function EditaProduto() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
+                    <Form.Label>Desconto</Form.Label>
+                    <Form.Control type="number" className={errors.desconto && "is-invalid"} {...register("desconto", { required: "A descrição é obrigatório.", maxLength: { value: 255, message: "Limite de 255 caracteres."} })} />
+                    {errors.desconto && <Form.Text className="invalid-feedback">{errors.desconto.message}</Form.Text>}
+                </Form.Group>
+
+                <Form.Group className="mb-3">
                     <Form.Label>Data Desconto</Form.Label>
                     <Form.Control type="date" className={errors.dataDesconto && "is-invalid"} {...register("dataDesconto", { required: "A data desconto é obrigatório.", })} />
                     {errors.dataDesconto && <Form.Text className="invalid-feedback">{errors.dataDesconto.message}</Form.Text>}
@@ -65,7 +71,7 @@ export function EditaProduto() {
                     {errors.categoria && <Form.Text className="invalid-feedback">{errors.categoria.message}</Form.Text>}
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Editar
                 </Button>
             </Form>

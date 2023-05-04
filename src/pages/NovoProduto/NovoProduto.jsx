@@ -102,7 +102,7 @@ export function NovoProduto() {
                     />
                     {errors.categoria && <Form.Text className="invalid-feedback">{errors.categoria.message}</Form.Text>}
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Cadastrar
                 </Button>
             </Form>

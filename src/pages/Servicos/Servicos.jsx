@@ -60,7 +60,7 @@ export function Servicos() {
             <tr>
               <th>Nome</th>
               <th>Preço</th>
-              <th>Ações</th>
+              <th className="w-25">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -68,7 +68,7 @@ export function Servicos() {
               <tr key={id}>
                 <td>{nome}</td>
                 <td>R${preco},00</td>
-                <td className="d-flex gap-2">
+                <td className="d-flex gap-2 justify-content-center" >
                   <Button variant="success" as={Link} to={`/servicos/editar/${id}`}>
                   <i className="bi bi-pencil-fill"></i>
                   </Button>
@@ -92,7 +92,7 @@ export function Servicos() {
                     <Button variant="danger" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={onDelete} >
+                    <Button variant="success" onClick={onDelete} >
                         Excluir
                     </Button>
                 </Modal.Footer>

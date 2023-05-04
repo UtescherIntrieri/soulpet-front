@@ -83,7 +83,7 @@ export function EditaCliente() {
                     {errors.endereco?.numero && <Form.Text className="invalid-feedback">{errors.endereco?.numero.message}</Form.Text>}
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Editar
                 </Button>
             </Form>
