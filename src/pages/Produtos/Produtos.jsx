@@ -57,6 +57,9 @@ export function Produtos() {
         <div className="produtos container">
             <div className="d-flex justify-content-between align-items-center">
                     <h1>Produtos</h1>
+                    <Button variant="success" as={Link} to="/produtos/novo">
+          <i className="bi bi-plus-lg me-2"></i> Produto
+        </Button>
                    
             </div>
             <div>

@@ -54,7 +54,7 @@ function onSubmit(data) {
                     {errors.servicoId && <Form.Text className="invalid-feedback">
                         {errors.servicoId.message}</Form.Text>}
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Cadastrar
                 </Button>
             </Form>
