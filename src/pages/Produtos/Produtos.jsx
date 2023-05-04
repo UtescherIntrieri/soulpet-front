@@ -118,8 +118,7 @@ export function Produtos() {
                                     return (
                                         <tr key={produto.id}>
                                             <td>{produto.nome}</td>
-                                            <td>{produto.preco}</td>
-                                            <td>{produto.descricao}</td>
+                                            <td>R${produto.preco},00</td>                                            <td>{produto.descricao}</td>
                                             <td>{produto.desconto}%</td>
                                             <td>{produto.dataDesconto.split("-").reverse().join("/")}</td>
                                             <td>{produto.categoria}</td>
